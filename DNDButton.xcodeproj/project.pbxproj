@@ -11,6 +11,7 @@
 		226F392E28A19C890047B410 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F392D28A19C890047B410 /* ContentView.swift */; };
 		226F393028A19C8A0047B410 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 226F392F28A19C8A0047B410 /* Assets.xcassets */; };
 		226F393428A19C8A0047B410 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 226F393328A19C8A0047B410 /* Preview Assets.xcassets */; };
+		226F393C28A19DF10047B410 /* CocoaMQTT in Frameworks */ = {isa = PBXBuildFile; productRef = 226F393B28A19DF10047B410 /* CocoaMQTT */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				226F393C28A19DF10047B410 /* CocoaMQTT in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +87,9 @@
 			dependencies = (
 			);
 			name = DNDButton;
+			packageProductDependencies = (
+				226F393B28A19DF10047B410 /* CocoaMQTT */,
+			);
 			productName = DNDButton;
 			productReference = 226F392828A19C890047B410 /* DNDButton.app */;
 			productType = "com.apple.product-type.application";
@@ -113,6 +118,9 @@
 				Base,
 			);
 			mainGroup = 226F391F28A19C890047B410;
+			packageReferences = (
+				226F393A28A19DF10047B410 /* XCRemoteSwiftPackageReference "CocoaMQTT" */,
+			);
 			productRefGroup = 226F392928A19C890047B410 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -262,6 +270,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DNDButton/DNDButton.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DNDButton/Preview Content\"";
@@ -298,6 +307,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DNDButton/DNDButton.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DNDButton/Preview Content\"";
@@ -350,6 +360,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		226F393A28A19DF10047B410 /* XCRemoteSwiftPackageReference "CocoaMQTT" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/emqx/CocoaMQTT";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		226F393B28A19DF10047B410 /* CocoaMQTT */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226F393A28A19DF10047B410 /* XCRemoteSwiftPackageReference "CocoaMQTT" */;
+			productName = CocoaMQTT;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 226F392028A19C890047B410 /* Project object */;
 }
