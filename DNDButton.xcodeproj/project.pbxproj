@@ -17,7 +17,7 @@
 /* Begin PBXFileReference section */
 		226F392828A19C890047B410 /* DNDButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DNDButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		226F392B28A19C890047B410 /* DNDButtonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNDButtonApp.swift; sourceTree = "<group>"; };
-		226F392D28A19C890047B410 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		226F392D28A19C890047B410 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		226F392F28A19C8A0047B410 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		226F393128A19C8A0047B410 /* DNDButton.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DNDButton.entitlements; sourceTree = "<group>"; };
 		226F393328A19C8A0047B410 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
