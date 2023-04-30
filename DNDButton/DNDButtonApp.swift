@@ -14,7 +14,7 @@ struct DNDButtonApp: App {
       
     var body: some Scene {
         WindowGroup {
-          ContentView().frame(width: 200,height: 200)
+          ContentView().frame(width: 600,height: 800)
         }
     }
 }
