@@ -17,38 +17,42 @@ struct ContentView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            
-            //            Image(systemName: Status ? "mic.fill" : "globe").resizable()
-            //                .foregroundColor(Status ? Color.red : Color.black).padding().frame(maxWidth: .infinity, maxHeight: .infinity)
-            //                .onTapGesture {
-            //                    let newstatus = !Status ? "1" : "0"
-            //                    print("Clck for \(newstatus)")
-            //                    self.mqttClient.publish("dnd/0001/state", withString:!Status ? "1" : "0", qos: .qos1, retained: true)
-            //                    print(self.mqttClient.connState)
-            //                }
             Group {
-                Button("Off") {
+                Button {
                     print("Off")
-                }.background(RoundedRectangle(cornerRadius: 8).fill(.blue))
-                    .foregroundColor(.black)
+                    self.mqttClient.publish("dnd/0001/status", withString:"off", qos: .qos1, retained: true)
+                } label: {
+                    Text("Off").frame(maxWidth:.infinity)
+                }.background(RoundedRectangle(cornerRadius: 8).fill(.gray).padding(-30))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
                 
-                Button("Clear") {
+                Button {
                     print("Clear")
-                }.background(RoundedRectangle(cornerRadius: 8).fill(.black))
+                    self.mqttClient.publish("dnd/0001/status", withString:"clear", qos: .qos1, retained: true)
+                } label:{
+                    Text("Clear").frame(maxWidth: .infinity)
+                }.background(RoundedRectangle(cornerRadius: 8).fill(.black).padding(-30))
                     .foregroundColor(.white)
                 
-                Button("Enter") {
+                Button {
                     print("Enter")
-                }.background(RoundedRectangle(cornerRadius: 8).fill(.green))
+                    self.mqttClient.publish("dnd/0001/status", withString:"enter", qos: .qos1, retained: true)
+                }label:{
+                    Text("Enter").frame(maxWidth: .infinity)
+                }.background(RoundedRectangle(cornerRadius: 8).fill(.green).padding(-30))
                     .foregroundColor(.black)
                 
-                Button("Do Not Disturb") {
+                Button {
+                    self.mqttClient.publish("dnd/0001/status", withString:"dnd", qos: .qos1, retained: true)
                     print("Do Not Disturb")
-                }.background(RoundedRectangle(cornerRadius: 8).fill(.red))
-                    .foregroundColor(.white)
+                }label:{
+                    Text("Do Not Disturb").frame(maxWidth: .infinity)
+                }.background(RoundedRectangle(cornerRadius: 8).fill(.red).padding(-30))
+                    .foregroundColor(.black)
+                
                 
             }.padding(40)
-                .frame(maxWidth: .infinity)
                 .font(.system(size: 50, weight: Font.Weight.bold))
             
         }.fixedSize().onAppear(perform: {
