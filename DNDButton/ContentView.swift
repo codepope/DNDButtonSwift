@@ -12,42 +12,43 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     
     let mqttClient = CocoaMQTT(clientID: "dndbuttonswift-" + String(ProcessInfo().processIdentifier), host: "jonah.local", port: 1883)
-    
-    @State public var Status: Bool = false
+        
+    @State public var connected:Bool=false
     
     var body: some View {
         VStack(alignment: .center) {
             Group {
                 Button {
-                    print("Off")
-                    self.mqttClient.publish("dnd/0001/status", withString:"off", qos: .qos1, retained: true)
+                    send(v:"off")
                 } label: {
                     Label("Off",systemImage:"power").frame(maxWidth:.infinity)
                 }.buttonStyle(StateButtonStyle())
-        
+                
                 Button {
-                    print("Clear")
-                    self.mqttClient.publish("dnd/0001/status", withString:"clear", qos: .qos1, retained: true)
+                    send(v:"clear")
                 } label: {
                     Label("Clear",systemImage:"clear.fill").frame(maxWidth:.infinity)
                 }.buttonStyle(StateButtonStyle())
-
+                
                 Button {
-                    print("Enter")
-                    self.mqttClient.publish("dnd/0001/status", withString:"enter", qos: .qos1, retained: true)
+                    send(v:"enter")
                 } label: {
                     Label("Enter",systemImage:"rectangle.righthalf.inset.fill.arrow.right").frame(maxWidth:.infinity)
                 }.buttonStyle(StateButtonStyle())
-
+                
                 Button {
-                    self.mqttClient.publish("dnd/0001/status", withString:"dnd", qos: .qos1, retained: true)
-                    print("Do Not Disturb")
+                    send(v:"dnd")
                 } label: {
                     Label("Do Not Disturb",systemImage:"triangle.inset.filled").frame(maxWidth:.infinity)
                 }.buttonStyle(StateButtonStyle())
                 
             }.onAppear(perform: {
-                print("Appears")
+                self.connect()
+            })
+        }
+    }
+                       
+    func connect() {
                 self.mqttClient.username = "dnd"
                 self.mqttClient.password = "dnd"
                 self.mqttClient.autoReconnect=true
@@ -55,19 +56,24 @@ struct ContentView: View {
                 _ = self.mqttClient.connect()
                 self.mqttClient.didConnectAck = { _, _ in
                     print("Connected")
+                    self.connected=true
                     self.mqttClient.subscribe("dnd/0001/state")
                     self.mqttClient.didReceiveMessage = {
                         _, message, _ in
-                        Status = (message.string! as NSString).boolValue
-                        print(Status)
+                        print(message.payload)
                     }
                     self.mqttClient.didDisconnect = {
-                        _, error in print("Disconnected \(error)")
+                        _, error in
+                            connected=false
                     }
                 }
             }
-            )
+    
+    func send(v:String) {
+        if !connected {
+            self.connect()
         }
+        self.mqttClient.publish("dnd/0001/status", withString:v, qos: .qos1, retained: true)
     }
 }
 
@@ -80,8 +86,8 @@ struct StateButtonStyle: ButtonStyle {
             .padding()
             .font(.largeTitle)
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
-                  .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
-
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+        
     }
 }
 
