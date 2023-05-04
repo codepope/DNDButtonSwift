@@ -22,28 +22,28 @@ struct ContentView: View {
                     print("Off")
                     self.mqttClient.publish("dnd/0001/status", withString:"off", qos: .qos1, retained: true)
                 } label: {
-                    Text("Off").frame(maxWidth:.infinity)
+                    Label("Off",systemImage:"power").frame(maxWidth:.infinity)
                 }.buttonStyle(StateButtonStyle())
         
                 Button {
                     print("Clear")
                     self.mqttClient.publish("dnd/0001/status", withString:"clear", qos: .qos1, retained: true)
                 } label: {
-                    Text("Clear").frame(maxWidth:.infinity)
+                    Label("Clear",systemImage:"clear.fill").frame(maxWidth:.infinity)
                 }.buttonStyle(StateButtonStyle())
 
                 Button {
                     print("Enter")
                     self.mqttClient.publish("dnd/0001/status", withString:"enter", qos: .qos1, retained: true)
                 } label: {
-                    Text("Enter").frame(maxWidth:.infinity)
+                    Label("Enter",systemImage:"rectangle.righthalf.inset.fill.arrow.right").frame(maxWidth:.infinity)
                 }.buttonStyle(StateButtonStyle())
 
                 Button {
                     self.mqttClient.publish("dnd/0001/status", withString:"dnd", qos: .qos1, retained: true)
                     print("Do Not Disturb")
                 } label: {
-                    Text("Do Not Disturb").frame(maxWidth:.infinity)
+                    Label("Do Not Disturb",systemImage:"triangle.inset.filled").frame(maxWidth:.infinity)
                 }.buttonStyle(StateButtonStyle())
                 
             }.onAppear(perform: {
